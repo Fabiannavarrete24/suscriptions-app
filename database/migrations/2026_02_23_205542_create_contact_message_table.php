@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deliveries', function (Blueprint $table) {
-            $table->id();
-            $table->integer('message_id');
-            $table->foreignId('contact_id')
-                ->constrained('contacts')
-                ->onDelete('cascade');
-            $table->string('status')->default('pending');
+        Schema::create('contact_message', function (Blueprint $table) {
+            $table->foreignId('message_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('contact_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deliveries');
+        Schema::dropIfExists('contact_message');
     }
 };

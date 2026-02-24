@@ -35,14 +35,14 @@
 
             {{-- CAMPAÑAS --}}
             <div class="bg-white shadow rounded-xl p-6">
-                <p class="text-sm text-gray-500">Campañas usadas</p>
+                <p class="text-sm text-gray-500">Mensajes usadas</p>
                 <h3 class="text-2xl font-bold">
-                    {{ $campaignsCount }} / {{ $plan->max_campaigns }}
+                    {{ $messagesCount }} / {{ $plan->max_messages }}
                 </h3>
 
                 <div class="w-full bg-gray-200 h-2 mt-3 rounded">
                     <div class="bg-green-500 h-2 rounded"
-                         style="width: {{ ($campaignsCount / $plan->max_campaigns) * 100 }}%">
+                         style="width: {{ ($messagesCount / $plan->max_messages) * 100 }}%">
                     </div>
                 </div>
             </div>
@@ -60,9 +60,9 @@
                     <p class="font-semibold">Agregar contacto</p>
                 </a>
 
-                <a href="{{ route('campaigns.index') }}"
+                <a href="{{ route('messages.index') }}"
                    class="bg-green-50 hover:bg-green-100 p-4 rounded-lg text-center">
-                    <p class="font-semibold">Crear campaña</p>
+                    <p class="font-semibold">Crear Mensaje</p>
                 </a>
 
                 <a href="{{ route('plans.index') }}"
@@ -84,7 +84,7 @@
 
             <ul class="space-y-2 text-gray-600">
                 <li>✔ Máx. destinatarios: {{ $plan->max_contacts }}</li>
-                <li>✔ Máx. campañas: {{ $plan->max_campaigns }}</li>
+                <li>✔ Máx. mensajes: {{ $plan->max_messages }}</li>
                 <li>✔ Frecuencia envíos: cada {{ $plan->send_frequency_days }} días</li>
                 <li>✔ Tamaño máximo archivo: {{ $plan->max_upload_mb }} MB</li>
             </ul>

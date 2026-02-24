@@ -21,7 +21,7 @@
                     <!-- Sidebar -->
             <!-- <aside class="w-64 bg-white shadow-lg">
                 <div class="p-6 text-xl font-bold border-b">Tu SaaS</div>
-                <nav class="p-4 space-y-2"> <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-100 rounded">Dashboard</a> <a href="{{ route('contacts.index') }}" class="block p-2 hover:bg-gray-100 rounded">Contactos</a> <a href="{{ route('campaigns.create') }}" class="block p-2 hover:bg-gray-100 rounded">Campañas</a> <a href="{{ route('billing.index') }}" class="block p-2 hover:bg-gray-100 rounded">Facturación</a> </nav>
+                <nav class="p-4 space-y-2"> <a href="{{ route('dashboard') }}" class="block p-2 hover:bg-gray-100 rounded">Dashboard</a> <a href="{{ route('contacts.index') }}" class="block p-2 hover:bg-gray-100 rounded">Contactos</a> <a href="{{ route('messages.create') }}" class="block p-2 hover:bg-gray-100 rounded">Campañas</a> <a href="{{ route('billing.index') }}" class="block p-2 hover:bg-gray-100 rounded">Facturación</a> </nav>
             </aside> -->
         <!-- Settings Dropdown -->
         <div class="hidden sm:flex sm:items-center sm:ms-6">

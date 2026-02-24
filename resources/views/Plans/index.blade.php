@@ -18,7 +18,7 @@
 
             <p class="text-sm text-gray-500 mb-4">
                 Contactos: {{ $plan->max_contacts }} <br>
-                Campañas: {{ $plan->max_campaigns }}
+                Mensajes: {{ $plan->max_messages }}
             </p>
 
             {{-- VALIDAR SI YA TIENE ESTE PLAN --}}

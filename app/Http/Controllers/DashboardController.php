@@ -23,13 +23,13 @@ class DashboardController extends Controller
 
         // Uso actual
         $contactsCount = $user->contacts()->count();
-        $campaignsCount = $user->campaigns()->count();
+        $messagesCount = $user->messages()->count();
 
         return view('dashboard.index', compact(
             'subscription',
             'plan',
             'contactsCount',
-            'campaignsCount'
+            'messagesCount'
         ));
     }
 }

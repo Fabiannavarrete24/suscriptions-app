@@ -12,4 +12,8 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function messages()
+{
+    return $this->belongsToMany(Message::class);
+}
 }

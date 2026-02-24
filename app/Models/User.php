@@ -50,7 +50,7 @@ class User extends Authenticatable
     {
         return $this->hasOneThrough(
             Plan::class,
-            Subscriptions::class,
+            Subscription::class,
             'user_id',
             'id',
             'id',
@@ -63,21 +63,13 @@ class User extends Authenticatable
         return $this->hasMany(Contact::class);
     }
 
-    public function campaigns()
-    {
-        return $this->hasMany(Campaign::class);
-    }
-    public function subscriptions()
-    {
-        return $this->hasMany(Subscriptions::class);
-    }
     public function payments()
     {
         return $this->hasMany(Payment::class);
     }
     public function subscription()
     {
-        return $this->hasOne(Subscriptions::class)
+        return $this->hasOne(Subscription::class)
             ->where('active', 1)
             ->where('ends_at', '>', now());
     }
@@ -85,5 +77,25 @@ class User extends Authenticatable
     public function hasActiveSubscription(): bool
     {
         return $this->subscription()->exists();
+    }
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function activeSubscription()
+    {
+        return $this->hasOne(Subscription::class)
+            ->where('active', 1);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+    
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }

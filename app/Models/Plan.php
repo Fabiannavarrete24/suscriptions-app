@@ -14,6 +14,11 @@ class Plan extends Model
         'max_campaigns',        
         'max_upload_mb',
         'send_frequency_days',
-        'allowed_frequencies'
+        'allowed_frequencies',
+        'allow_email',
+        'allow_sms',
+        'allow_whatsapp',
+        'allow_image',
+        'allow_video',
     ];
 }

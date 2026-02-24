@@ -11,15 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->text('message');
+            $table->text('content');
             $table->string('channel'); // sms | email | whatsapp
             $table->string('media')->nullable();
             $table->timestamp('scheduled_at');
             $table->boolean('sent')->default(false);
+            $table->enum('status', [
+                'draft',
+                'scheduled',
+                'sending',
+                'sent',
+                'failed'
+            ])->default('scheduled');
             $table->timestamps();
         });
     }
@@ -29,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('messages');
     }
 };

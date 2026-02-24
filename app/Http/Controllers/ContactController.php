@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    private function getActivePlan($user)
+    {
+        return $user->subscriptions()
+            ->where('active', 1)
+            ->with('plan')
+            ->first()?->plan;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -13,12 +20,24 @@ class ContactController extends Controller
     {
         $user = $request->user();
 
-        $subscription = $user->subscriptions()->where('active', 1)->first();
-        $maxContacts = $subscription->plan->max_contacts;
+        $subscription = $user->subscriptions()
+            ->where('active', 1)
+            ->with('plan')
+            ->first();
+
+        if (!$subscription) {
+            return redirect()->route('plans.index');
+        }
+
+        $plan = $this->getActivePlan($user);
+
+        if (!$plan) {
+            return redirect()->route('plans.index');
+        }
 
         $contacts = $user->contacts()->paginate(10);
 
-        return view('contacts.index', compact('contacts', 'maxContacts'));
+        return view('contacts.index', compact('contacts', 'plan'));
     }
 
 
@@ -36,7 +55,20 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $plan = $user->subscription->plan;
+        $subscription = $user->subscriptions()
+            ->where('active', 1)
+            ->with('plan')
+            ->first();
+
+        if (!$subscription) {
+            return redirect()->route('plans.index');
+        }
+
+        $plan = $this->getActivePlan($user);
+
+        if (!$plan) {
+            return redirect()->route('plans.index');
+        }
 
         if ($user->contacts()->count() >= $plan->max_contacts) {
             return back()->with('error', 'Has alcanzado el límite de contactos de tu plan.');

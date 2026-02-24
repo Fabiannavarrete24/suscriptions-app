@@ -17,10 +17,15 @@ return new class extends Migration
             $table->decimal('price_monthly', 10, 2);
             $table->decimal('price_yearly', 10, 2);
             $table->integer('max_contacts');
-            $table->integer('max_campaigns');
+            $table->integer('max_messages');
             $table->integer('max_upload_mb');
             $table->integer('send_frequency_days');
             $table->json('allowed_frequencies');
+            $table->boolean('allow_email')->default(true);
+            $table->boolean('allow_sms')->default(false);
+            $table->boolean('allow_whatsapp')->default(false);
+            $table->boolean('allow_image')->default(true);
+            $table->boolean('allow_video')->default(false);
             $table->timestamps();
         });
     }
